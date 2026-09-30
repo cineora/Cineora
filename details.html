@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie Details — CINEORA</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#080808;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+/* NAVBAR */
+.navbar{
+    height:70px;
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:1000;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    background:rgba(0,0,0,.94);
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    color:#e50914;
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-decoration:none;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.nav-links a:hover{
+    color:#e50914;
+}
+
+/* HERO DETAILS */
+.details{
+    min-height:100vh;
+    padding:120px 7% 70px;
+    display:flex;
+    align-items:center;
+    gap:55px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #080808 10%,
+            rgba(8,8,8,.88) 45%,
+            rgba(8,8,8,.55) 100%
+        ),
+        url("assets/posters/movie1.jpg")
+        center/cover no-repeat;
+}
+
+/* POSTER */
+.poster-box{
+    width:300px;
+    flex-shrink:0;
+}
+
+.poster-box img{
+    width:100%;
+    aspect-ratio:2/3;
+    object-fit:cover;
+    border-radius:8px;
+    display:block;
+    box-shadow:0 15px 40px rgba(0,0,0,.7);
+}
+
+/* CONTENT */
+.movie-content{
+    max-width:650px;
+}
+
+.movie-content h1{
+    font-size:55px;
+    line-height:1.05;
+    margin-bottom:18px;
+}
+
+.meta{
+    color:#bbb;
+    font-size:15px;
+    margin-bottom:20px;
+}
+
+.rating{
+    color:#f5c518;
+    font-weight:bold;
+}
+
+.description{
+    color:#ddd;
+    font-size:17px;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+.tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.tag{
+    background:#222;
+    border:1px solid #444;
+    padding:8px 14px;
+    border-radius:20px;
+    color:#ddd;
+    font-size:13px;
+}
+
+/* BUTTONS */
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:13px 24px;
+    border-radius:5px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:15px;
+    display:inline-block;
+    border:none;
+    cursor:pointer;
+}
+
+.watch{
+    background:#e50914;
+    color:#fff;
+}
+
+.back{
+    background:#333;
+    color:#fff;
+}
+
+.watch:hover{
+    background:#b20710;
+}
+
+.back:hover{
+    background:#444;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #222;
+    color:#777;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .navbar{
+        height:auto;
+        min-height:65px;
+        padding:12px 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .details{
+        padding:105px 5% 50px;
+        min-height:100vh;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:30px;
+
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(8,8,8,.75),
+                #080808 65%
+            ),
+            url("assets/posters/movie1.jpg")
+            center top/cover no-repeat;
+    }
+
+    .poster-box{
+        width:190px;
+        margin:auto;
+    }
+
+    .movie-content{
+        width:100%;
+        text-align:left;
+    }
+
+    .movie-content h1{
+        font-size:34px;
+    }
+
+    .description{
+        font-size:14px;
+        line-height:1.6;
+    }
+
+    .meta{
+        font-size:13px;
+    }
+
+    .btn{
+        padding:11px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+    <a href="index.html" class="logo">CINEORA</a>
+
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="series.html">Series</a></li>
+    </ul>
+
+</header>
+
+
+<!-- MOVIE DETAILS -->
+<section class="details">
+
+    <div class="poster-box">
+        <img
+            id="moviePoster"
+            src="assets/posters/movie1.jpg"
+            alt="Movie Poster">
+    </div>
+
+
+    <div class="movie-content">
+
+        <h1 id="movieTitle">
+            The Last Adventure
+        </h1>
+
+        <div class="meta">
+            <span class="rating">★ 8.8</span>
+            &nbsp; • &nbsp;
+            2026
+            &nbsp; • &nbsp;
+            2h 10m
+            &nbsp; • &nbsp;
+            HD
+        </div>
+
+        <div class="tags">
+            <span class="tag">Action</span>
+            <span class="tag">Adventure</span>
+            <span class="tag">Thriller</span>
+        </div>
+
+        <p class="description">
+            A thrilling adventure begins when an unexpected mystery
+            leads our hero into a dangerous journey. Discover hidden
+            secrets, face powerful challenges and experience an
+            unforgettable cinematic adventure.
+        </p>
+
+        <div class="buttons">
+
+            <a href="watch.html"
+               class="btn watch">
+                ▶ Watch Now
+            </a>
+
+            <a href="movies.html"
+               class="btn back">
+                ← Back to Movies
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 CINEORA — Movies & Entertainment
+</footer>
+
+
+<script>
+
+/* Get movie name from URL */
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const movie = params.get("movie");
+
+
+/* Movie data */
+const movies = {
+
+    "The Last Adventure":{
+        poster:"assets/posters/movie1.jpg",
+        title:"The Last Adventure"
+    },
+
+    "Lost World":{
+        poster:"assets/posters/movie2.jpg",
+        title:"Lost World"
+    },
+
+    "Dark Mission":{
+        poster:"assets/posters/movie3.jpg",
+        title:"Dark Mission"
+    },
+
+    "Dark Night":{
+        poster:"assets/posters/movie4.jpg",
+        title:"Dark Night"
+    },
+
+    "Unknown Planet":{
+        poster:"assets/posters/movie5.jpg",
+        title:"Unknown Planet"
+    },
+
+    "Crazy Weekend":{
+        poster:"assets/posters/movie6.jpg",
+        title:"Crazy Weekend"
+    },
+
+    "Forever":{
+        poster:"assets/posters/movie7.jpg",
+        title:"Forever"
+    },
+
+    "Final Mission":{
+        poster:"assets/posters/movie8.jpg",
+        title:"Final Mission"
+    },
+
+    "The Haunted":{
+        poster:"assets/posters/movie9.jpg",
+        title:"The Haunted"
+    },
+
+    "Jungle Mystery":{
+        poster:"assets/posters/movie10.jpg",
+        title:"Jungle Mystery"
+    },
+
+    "The Unknown":{
+        poster:"assets/posters/movie11.jpg",
+        title:"The Unknown"
+    },
+
+    "Future World":{
+        poster:"assets/posters/movie12.jpg",
+        title:"Future World"
+    }
+
+};
+
+
+/* Change details according to selected movie */
+if(movie && movies[movie]){
+
+    document.getElementById("movieTitle")
+        .textContent = movies[movie].title;
+
+    document.getElementById("moviePoster")
+        .src = movies[movie].poster;
+
+}
+
+</script>
+
+</body>
+  </html>
