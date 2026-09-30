@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Watch — CINEORA</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#050505;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.navbar{
+    height:70px;
+    display:flex;
+    align-items:center;
+    padding:0 5%;
+    background:#050505;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    color:#e50914;
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+    text-decoration:none;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:35px auto 60px;
+}
+
+.back{
+    display:inline-block;
+    color:#bbb;
+    text-decoration:none;
+    margin-bottom:20px;
+}
+
+.back:hover{
+    color:#fff;
+}
+
+/* VIDEO PLAYER */
+.player{
+    width:100%;
+    background:#000;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 15px 50px rgba(0,0,0,.7);
+}
+
+video{
+    width:100%;
+    max-height:680px;
+    display:block;
+    background:#000;
+}
+
+/* TITLE */
+.title{
+    margin-top:25px;
+}
+
+.title h1{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+.meta{
+    color:#999;
+    font-size:14px;
+}
+
+/* NOTICE */
+.notice{
+    margin-top:25px;
+    padding:18px;
+    background:#151515;
+    border-left:4px solid #e50914;
+    border-radius:5px;
+    color:#bbb;
+    line-height:1.6;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    border-top:1px solid #222;
+    color:#666;
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    .navbar{
+        height:60px;
+    }
+
+    .logo{
+        font-size:23px;
+    }
+
+    .container{
+        width:94%;
+        margin-top:25px;
+    }
+
+    .title h1{
+        font-size:24px;
+    }
+
+    video{
+        max-height:300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo">CINEORA</a>
+</header>
+
+
+<main class="container">
+
+    <a href="movies.html" class="back">
+        ← Back to Movies
+    </a>
+
+
+    <div class="player">
+
+        <!--
+        Replace the video source below with a video
+        file that you own or are licensed to stream.
+        -->
+
+        <video controls playsinline poster="assets/posters/movie1.jpg">
+
+            <source src="assets/videos/movie1.mp4"
+                    type="video/mp4">
+
+            Your browser does not support video playback.
+
+        </video>
+
+    </div>
+
+
+    <div class="title">
+
+        <h1 id="movieTitle">
+            The Last Adventure
+        </h1>
+
+        <div class="meta">
+            ⭐ 8.8 &nbsp; • &nbsp;
+            2026 &nbsp; • &nbsp;
+            Action & Adventure &nbsp; • &nbsp;
+            HD
+        </div>
+
+    </div>
+
+
+    <div class="notice">
+        CINEORA video player. Only videos that you own,
+        created yourself, are public-domain, or have permission
+        to distribute should be uploaded or streamed here.
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 CINEORA — Movies & Entertainment
+</footer>
+
+</body>
+</html>
