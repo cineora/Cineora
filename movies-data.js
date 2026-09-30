@@ -18,7 +18,7 @@ const movies = [
     duration: "2h 05m",
     rating: "8.5",
     genre: ["Adventure"],
-    poster: "assets/posters/mission-impossible.jpg",
+    poster: "assets/posters/movie2.jpg",
     description: "An incredible adventure into a mysterious lost world.",
     video: ""
   },
