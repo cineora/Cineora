@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Movies — CINEORA</title>
-<meta name="description" content="Browse movies on CINEORA">
 
 <style>
 *{
@@ -32,7 +31,7 @@ body{
     align-items:center;
     justify-content:space-between;
     padding:0 5%;
-    background:rgba(0,0,0,.94);
+    background:rgba(0,0,0,.95);
     border-bottom:1px solid #222;
 }
 
@@ -61,6 +60,7 @@ body{
     color:#e50914;
 }
 
+/* SEARCH */
 .search{
     display:flex;
     gap:7px;
@@ -72,7 +72,7 @@ body{
     background:#151515;
     border:1px solid #444;
     border-radius:5px;
-    color:white;
+    color:#fff;
     outline:none;
 }
 
@@ -92,26 +92,24 @@ body{
 
 .page-title{
     font-size:38px;
-    font-weight:900;
     margin-bottom:25px;
 }
 
-/* CATEGORIES */
+/* FILTER */
 .categories{
     display:flex;
-    gap:10px;
     flex-wrap:wrap;
-    margin-bottom:35px;
+    gap:10px;
+    margin-bottom:30px;
 }
 
 .category{
-    padding:9px 17px;
-    background:#1b1b1b;
     border:1px solid #333;
-    border-radius:20px;
+    background:#1b1b1b;
     color:#ddd;
+    padding:9px 17px;
+    border-radius:20px;
     cursor:pointer;
-    transition:.3s;
 }
 
 .category:hover,
@@ -121,7 +119,7 @@ body{
     color:#fff;
 }
 
-/* MOVIE GRID */
+/* GRID */
 .movie-grid{
     display:grid;
     grid-template-columns:repeat(6,1fr);
@@ -130,28 +128,25 @@ body{
 
 .movie-card{
     background:#151515;
-    border-radius:6px;
+    border-radius:7px;
     overflow:hidden;
-    position:relative;
     cursor:pointer;
     transition:.3s;
 }
 
 .movie-card:hover{
     transform:scale(1.05);
-    z-index:5;
 }
 
-.poster{
+.movie-card img{
     width:100%;
     aspect-ratio:2/3;
     object-fit:cover;
     display:block;
-    background:#222;
 }
 
 .movie-info{
-    padding:12px;
+    padding:11px;
 }
 
 .movie-info h3{
@@ -168,18 +163,18 @@ body{
 }
 
 .rating{
+    margin-top:7px;
     color:#f5c518;
     font-size:12px;
-    margin-top:7px;
 }
 
-/* FOOTER */
-footer{
+/* NO RESULT */
+.no-result{
+    display:none;
     text-align:center;
-    padding:35px 20px;
-    border-top:1px solid #222;
-    color:#777;
-    margin-top:30px;
+    color:#888;
+    padding:50px 10px;
+    font-size:18px;
 }
 
 /* MOBILE */
@@ -236,10 +231,6 @@ footer{
         gap:12px;
     }
 
-    .movie-info{
-        padding:9px;
-    }
-
     .movie-info h3{
         font-size:13px;
     }
@@ -249,7 +240,6 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
 
     <a href="index.html" class="logo">CINEORA</a>
@@ -258,7 +248,6 @@ footer{
         <li><a href="index.html">Home</a></li>
         <li><a href="movies.html">Movies</a></li>
         <li><a href="series.html">Series</a></li>
-        <li><a href="index.html#categories">Categories</a></li>
     </ul>
 
     <div class="search">
@@ -266,352 +255,220 @@ footer{
             type="text"
             id="searchInput"
             placeholder="Search">
+
         <button onclick="searchMovies()">🔍</button>
     </div>
 
 </header>
 
 
-<!-- MAIN -->
 <main class="container">
 
     <h1 class="page-title">Movies</h1>
 
-    <!-- CATEGORY FILTER -->
     <div class="categories">
 
         <button class="category active"
-            onclick="filterMovies('all',this)">
+                onclick="filterMovies('all',this)">
             All
         </button>
 
         <button class="category"
-            onclick="filterMovies('action',this)">
+                onclick="filterMovies('Action',this)">
             Action
         </button>
 
         <button class="category"
-            onclick="filterMovies('horror',this)">
+                onclick="filterMovies('Horror',this)">
             Horror
         </button>
 
         <button class="category"
-            onclick="filterMovies('comedy',this)">
+                onclick="filterMovies('Comedy',this)">
             Comedy
         </button>
 
         <button class="category"
-            onclick="filterMovies('romance',this)">
+                onclick="filterMovies('Romance',this)">
             Romance
         </button>
 
         <button class="category"
-            onclick="filterMovies('scifi',this)">
+                onclick="filterMovies('Sci-Fi',this)">
             Sci-Fi
         </button>
 
         <button class="category"
-            onclick="filterMovies('adventure',this)">
+                onclick="filterMovies('Adventure',this)">
             Adventure
         </button>
 
         <button class="category"
-            onclick="filterMovies('thriller',this)">
+                onclick="filterMovies('Thriller',this)">
             Thriller
         </button>
 
     </div>
 
 
-    <!-- MOVIES -->
-    <div class="movie-grid" id="movieGrid">
+    <div class="movie-grid" id="movieGrid"></div>
 
-
-        <div class="movie-card" data-category="action" data-title="The Last Adventure"
-             onclick="openMovie('The Last Adventure')">
-
-            <img class="poster"
-                 src="assets/posters/movie1.jpg"
-                 alt="The Last Adventure">
-
-            <div class="movie-info">
-                <h3>The Last Adventure</h3>
-                <p>Action • 2026</p>
-                <div class="rating">★ 8.8</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="adventure" data-title="Lost World"
-             onclick="openMovie('Lost World')">
-
-            <img class="poster"
-                 src="assets/posters/movie2.jpg"
-                 alt="Lost World">
-
-            <div class="movie-info">
-                <h3>Lost World</h3>
-                <p>Adventure • 2026</p>
-                <div class="rating">★ 8.5</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="thriller" data-title="Dark Mission"
-             onclick="openMovie('Dark Mission')">
-
-            <img class="poster"
-                 src="assets/posters/movie3.jpg"
-                 alt="Dark Mission">
-
-            <div class="movie-info">
-                <h3>Dark Mission</h3>
-                <p>Thriller • 2026</p>
-                <div class="rating">★ 8.3</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="horror" data-title="Dark Night"
-             onclick="openMovie('Dark Night')">
-
-            <img class="poster"
-                 src="assets/posters/movie4.jpg"
-                 alt="Dark Night">
-
-            <div class="movie-info">
-                <h3>Dark Night</h3>
-                <p>Horror • 2026</p>
-                <div class="rating">★ 8.1</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="scifi" data-title="Unknown Planet"
-             onclick="openMovie('Unknown Planet')">
-
-            <img class="poster"
-                 src="assets/posters/movie5.jpg"
-                 alt="Unknown Planet">
-
-            <div class="movie-info">
-                <h3>Unknown Planet</h3>
-                <p>Sci-Fi • 2026</p>
-                <div class="rating">★ 8.6</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="comedy" data-title="Crazy Weekend"
-             onclick="openMovie('Crazy Weekend')">
-
-            <img class="poster"
-                 src="assets/posters/movie6.jpg"
-                 alt="Crazy Weekend">
-
-            <div class="movie-info">
-                <h3>Crazy Weekend</h3>
-                <p>Comedy • 2026</p>
-                <div class="rating">★ 7.9</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="romance" data-title="Forever"
-             onclick="openMovie('Forever')">
-
-            <img class="poster"
-                 src="assets/posters/movie7.jpg"
-                 alt="Forever">
-
-            <div class="movie-info">
-                <h3>Forever</h3>
-                <p>Romance • 2026</p>
-                <div class="rating">★ 8.0</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="action" data-title="Final Mission"
-             onclick="openMovie('Final Mission')">
-
-            <img class="poster"
-                 src="assets/posters/movie8.jpg"
-                 alt="Final Mission">
-
-            <div class="movie-info">
-                <h3>Final Mission</h3>
-                <p>Action • 2026</p>
-                <div class="rating">★ 8.7</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="horror" data-title="The Haunted"
-             onclick="openMovie('The Haunted')">
-
-            <img class="poster"
-                 src="assets/posters/movie9.jpg"
-                 alt="The Haunted">
-
-            <div class="movie-info">
-                <h3>The Haunted</h3>
-                <p>Horror • 2026</p>
-                <div class="rating">★ 8.4</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="adventure" data-title="Jungle Mystery"
-             onclick="openMovie('Jungle Mystery')">
-
-            <img class="poster"
-                 src="assets/posters/movie10.jpg"
-                 alt="Jungle Mystery">
-
-            <div class="movie-info">
-                <h3>Jungle Mystery</h3>
-                <p>Adventure • 2026</p>
-                <div class="rating">★ 8.2</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="thriller" data-title="The Unknown"
-             onclick="openMovie('The Unknown')">
-
-            <img class="poster"
-                 src="assets/posters/movie11.jpg"
-                 alt="The Unknown">
-
-            <div class="movie-info">
-                <h3>The Unknown</h3>
-                <p>Thriller • 2026</p>
-                <div class="rating">★ 8.5</div>
-            </div>
-
-        </div>
-
-
-        <div class="movie-card" data-category="scifi" data-title="Future World"
-             onclick="openMovie('Future World')">
-
-            <img class="poster"
-                 src="assets/posters/movie12.jpg"
-                 alt="Future World">
-
-            <div class="movie-info">
-                <h3>Future World</h3>
-                <p>Sci-Fi • 2026</p>
-                <div class="rating">★ 8.9</div>
-            </div>
-
-        </div>
-
+    <div class="no-result" id="noResult">
+        No movies found.
     </div>
 
 </main>
 
 
-<footer>
-    © 2026 CINEORA — Movies & Entertainment
-</footer>
-
+<script src="movies-data.js"></script>
 
 <script>
 
-function filterMovies(category, button){
+const movieGrid =
+    document.getElementById("movieGrid");
 
-    const cards =
-        document.querySelectorAll(".movie-card");
+const noResult =
+    document.getElementById("noResult");
 
-    const buttons =
-        document.querySelectorAll(".category");
 
-    buttons.forEach(btn =>
-        btn.classList.remove("active")
-    );
+/* SHOW MOVIES */
+function displayMovies(list){
+
+    movieGrid.innerHTML = "";
+
+    if(list.length === 0){
+
+        noResult.style.display = "block";
+        return;
+
+    }
+
+    noResult.style.display = "none";
+
+
+    list.forEach(movie => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "movie-card";
+
+        card.innerHTML = `
+
+            <img
+                src="${movie.poster}"
+                alt="${movie.title}">
+
+            <div class="movie-info">
+
+                <h3>${movie.title}</h3>
+
+                <p>
+                    ${movie.genre.join(" • ")}
+                    • ${movie.year}
+                </p>
+
+                <div class="rating">
+                    ★ ${movie.rating}
+                </div>
+
+            </div>
+        `;
+
+
+        card.onclick = function(){
+
+            window.location.href =
+                "details.html?movie=" +
+                encodeURIComponent(movie.id);
+
+        };
+
+
+        movieGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* FILTER */
+function filterMovies(category,button){
+
+    document
+        .querySelectorAll(".category")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
     button.classList.add("active");
 
-    cards.forEach(card => {
 
-        if(category === "all" ||
-           card.dataset.category === category){
+    if(category === "all"){
 
-            card.style.display = "block";
+        displayMovies(movies);
 
-        }else{
+    }else{
 
-            card.style.display = "none";
+        const filtered =
+            movies.filter(movie =>
+                movie.genre.includes(category)
+            );
 
-        }
+        displayMovies(filtered);
 
-    });
-
-}
-
-
-function searchMovies(){
-
-    const input =
-        document.getElementById("searchInput");
-
-    const search =
-        input.value.toLowerCase().trim();
-
-    const cards =
-        document.querySelectorAll(".movie-card");
-
-    cards.forEach(card => {
-
-        const title =
-            card.dataset.title.toLowerCase();
-
-        if(title.includes(search)){
-
-            card.style.display = "block";
-
-        }else{
-
-            card.style.display = "none";
-
-        }
-
-    });
-
-}
-
-
-document.getElementById("searchInput")
-.addEventListener("keypress", function(e){
-
-    if(e.key === "Enter"){
-        searchMovies();
     }
 
-});
+}
 
 
-function openMovie(title){
+/* SEARCH */
+function searchMovies(){
 
-    window.location.href =
-        "details.html?movie=" +
-        encodeURIComponent(title);
+    const query =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const filtered =
+        movies.filter(movie => {
+
+            const title =
+                movie.title.toLowerCase();
+
+            const genres =
+                movie.genre.join(" ").toLowerCase();
+
+            return title.includes(query) ||
+                   genres.includes(query);
+
+        });
+
+
+    displayMovies(filtered);
 
 }
+
+
+/* ENTER KEY */
+document
+    .getElementById("searchInput")
+    .addEventListener("keypress",function(e){
+
+        if(e.key === "Enter"){
+            searchMovies();
+        }
+
+    });
+
+
+/* INITIAL */
+displayMovies(movies);
 
 </script>
 
 </body>
-          </html>
+</html>
