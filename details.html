@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Movie Details — CINEORA</title>
+<title>Movie Details | CINEORA</title>
 
 <style>
 *{
@@ -14,147 +14,133 @@
 }
 
 body{
+    font-family:Arial,Helvetica,sans-serif;
     background:#080808;
     color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+    min-height:100vh;
 }
 
 /* NAVBAR */
 .navbar{
     height:70px;
-    width:100%;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1000;
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 5%;
-    background:rgba(0,0,0,.94);
+    padding:0 6%;
+    background:rgba(0,0,0,.92);
     border-bottom:1px solid #222;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 .logo{
-    color:#e50914;
     font-size:28px;
     font-weight:900;
     letter-spacing:2px;
-    text-decoration:none;
+    color:#e50914;
 }
 
 .nav-links{
     display:flex;
     gap:25px;
-    list-style:none;
 }
 
 .nav-links a{
-    color:#fff;
+    color:#ddd;
     text-decoration:none;
     font-size:15px;
-    font-weight:bold;
+    transition:.3s;
 }
 
 .nav-links a:hover{
-    color:#e50914;
+    color:#fff;
 }
 
-/* HERO DETAILS */
+/* DETAILS */
 .details{
-    min-height:100vh;
-    padding:120px 7% 70px;
+    min-height:calc(100vh - 70px);
+    padding:60px 7%;
     display:flex;
     align-items:center;
     gap:55px;
-
     background:
-        linear-gradient(
-            90deg,
-            #080808 10%,
-            rgba(8,8,8,.88) 45%,
-            rgba(8,8,8,.55) 100%
-        ),
-        url("assets/posters/movie1.jpg")
-        center/cover no-repeat;
+        radial-gradient(circle at 75% 45%,rgba(229,9,20,.18),transparent 35%),
+        linear-gradient(90deg,#080808 20%,#101010 100%);
 }
 
-/* POSTER */
-.poster-box{
-    width:300px;
-    flex-shrink:0;
-}
-
-.poster-box img{
-    width:100%;
-    aspect-ratio:2/3;
+.poster{
+    width:330px;
+    min-width:330px;
+    height:490px;
     object-fit:cover;
-    border-radius:8px;
-    display:block;
-    box-shadow:0 15px 40px rgba(0,0,0,.7);
+    border-radius:12px;
+    box-shadow:0 20px 50px rgba(0,0,0,.7);
 }
 
-/* CONTENT */
-.movie-content{
-    max-width:650px;
+.info{
+    max-width:700px;
 }
 
-.movie-content h1{
-    font-size:55px;
-    line-height:1.05;
-    margin-bottom:18px;
-}
-
-.meta{
-    color:#bbb;
-    font-size:15px;
+.info h1{
+    font-size:52px;
+    line-height:1.1;
     margin-bottom:20px;
 }
 
+.meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.meta span{
+    color:#ccc;
+    font-size:15px;
+}
+
 .rating{
-    color:#f5c518;
+    color:#ffd700 !important;
     font-weight:bold;
 }
 
-.description{
-    color:#ddd;
-    font-size:17px;
-    line-height:1.7;
+.genres{
+    display:flex;
+    flex-wrap:wrap;
+    gap:9px;
     margin-bottom:25px;
 }
 
-.tags{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:30px;
-}
-
-.tag{
+.genre{
     background:#222;
-    border:1px solid #444;
-    padding:8px 14px;
+    border:1px solid #333;
+    padding:7px 13px;
     border-radius:20px;
     color:#ddd;
     font-size:13px;
 }
 
-/* BUTTONS */
+.description{
+    color:#bbb;
+    font-size:17px;
+    line-height:1.8;
+    margin-bottom:30px;
+}
+
 .buttons{
     display:flex;
-    gap:12px;
+    gap:15px;
     flex-wrap:wrap;
 }
 
 .btn{
-    padding:13px 24px;
-    border-radius:5px;
-    text-decoration:none;
-    font-weight:bold;
-    font-size:15px;
     display:inline-block;
-    border:none;
-    cursor:pointer;
+    text-decoration:none;
+    padding:14px 28px;
+    border-radius:7px;
+    font-weight:bold;
+    transition:.3s;
 }
 
 .watch{
@@ -162,86 +148,84 @@ body{
     color:#fff;
 }
 
+.watch:hover{
+    background:#b20710;
+    transform:translateY(-2px);
+}
+
 .back{
-    background:#333;
+    background:#252525;
     color:#fff;
 }
 
-.watch:hover{
-    background:#b20710;
-}
-
 .back:hover{
-    background:#444;
+    background:#333;
 }
 
-/* FOOTER */
-footer{
+/* NOT FOUND */
+.not-found{
     text-align:center;
-    padding:30px;
-    border-top:1px solid #222;
-    color:#777;
+    padding:100px 20px;
+}
+
+.not-found h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.not-found p{
+    color:#aaa;
+    margin-bottom:25px;
 }
 
 /* MOBILE */
 @media(max-width:800px){
 
     .navbar{
-        height:auto;
-        min-height:65px;
-        padding:12px 4%;
+        padding:0 5%;
     }
 
     .nav-links{
-        display:none;
+        gap:12px;
+    }
+
+    .nav-links a{
+        font-size:12px;
     }
 
     .logo{
-        font-size:23px;
+        font-size:22px;
     }
 
     .details{
-        padding:105px 5% 50px;
-        min-height:100vh;
+        padding:40px 6%;
         flex-direction:column;
-        align-items:flex-start;
-        gap:30px;
-
-        background:
-            linear-gradient(
-                to bottom,
-                rgba(8,8,8,.75),
-                #080808 65%
-            ),
-            url("assets/posters/movie1.jpg")
-            center top/cover no-repeat;
+        text-align:center;
+        gap:35px;
     }
 
-    .poster-box{
-        width:190px;
-        margin:auto;
+    .poster{
+        width:260px;
+        min-width:260px;
+        height:390px;
     }
 
-    .movie-content{
-        width:100%;
-        text-align:left;
+    .info{
+        max-width:100%;
     }
 
-    .movie-content h1{
-        font-size:34px;
+    .info h1{
+        font-size:36px;
+    }
+
+    .meta,
+    .genres,
+    .buttons{
+        justify-content:center;
     }
 
     .description{
-        font-size:14px;
-        line-height:1.6;
-    }
-
-    .meta{
-        font-size:13px;
-    }
-
-    .btn{
-        padding:11px 18px;
+        font-size:15px;
     }
 }
 </style>
@@ -250,68 +234,60 @@ footer{
 <body>
 
 <!-- NAVBAR -->
-<header class="navbar">
+<nav class="navbar">
 
-    <a href="index.html" class="logo">CINEORA</a>
+    <div class="logo">CINEORA</div>
 
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="movies.html">Movies</a></li>
-        <li><a href="series.html">Series</a></li>
-    </ul>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="movies.html">Movies</a>
+        <a href="series.html">Series</a>
+        <a href="movies.html">Categories</a>
+    </div>
 
-</header>
+</nav>
 
 
 <!-- MOVIE DETAILS -->
-<section class="details">
+<section class="details" id="detailsSection">
 
-    <div class="poster-box">
-        <img
-            id="moviePoster"
-            src="assets/posters/movie1.jpg"
-            alt="Movie Poster">
-    </div>
+    <img
+        id="poster"
+        class="poster"
+        src=""
+        alt="Movie Poster"
+    >
 
+    <div class="info">
 
-    <div class="movie-content">
-
-        <h1 id="movieTitle">
-            The Last Adventure
-        </h1>
+        <h1 id="title">Loading...</h1>
 
         <div class="meta">
-            <span class="rating">★ 8.8</span>
-            &nbsp; • &nbsp;
-            2026
-            &nbsp; • &nbsp;
-            2h 10m
-            &nbsp; • &nbsp;
-            HD
+            <span id="year"></span>
+            <span>•</span>
+            <span id="duration"></span>
+            <span>•</span>
+            <span class="rating" id="rating"></span>
         </div>
 
-        <div class="tags">
-            <span class="tag">Action</span>
-            <span class="tag">Adventure</span>
-            <span class="tag">Thriller</span>
-        </div>
+        <div class="genres" id="genres"></div>
 
-        <p class="description">
-            A thrilling adventure begins when an unexpected mystery
-            leads our hero into a dangerous journey. Discover hidden
-            secrets, face powerful challenges and experience an
-            unforgettable cinematic adventure.
-        </p>
+        <p class="description" id="description"></p>
 
         <div class="buttons">
 
-            <a href="watch.html"
-               class="btn watch">
+            <a
+                id="watchButton"
+                class="btn watch"
+                href="#"
+            >
                 ▶ Watch Now
             </a>
 
-            <a href="movies.html"
-               class="btn back">
+            <a
+                class="btn back"
+                href="movies.html"
+            >
                 ← Back to Movies
             </a>
 
@@ -322,99 +298,84 @@ footer{
 </section>
 
 
-<footer>
-    © 2026 CINEORA — Movies & Entertainment
-</footer>
-
+<!-- MOVIES DATA -->
+<script src="movies-data.js"></script>
 
 <script>
 
-/* Get movie name from URL */
-const params = new URLSearchParams(
-    window.location.search
-);
+const params = new URLSearchParams(window.location.search);
 
-const movie = params.get("movie");
+const movieId = params.get("movie");
 
-
-/* Movie data */
-const movies = {
-
-    "The Last Adventure":{
-        poster:"assets/posters/movie1.jpg",
-        title:"The Last Adventure"
-    },
-
-    "Lost World":{
-        poster:"assets/posters/movie2.jpg",
-        title:"Lost World"
-    },
-
-    "Dark Mission":{
-        poster:"assets/posters/movie3.jpg",
-        title:"Dark Mission"
-    },
-
-    "Dark Night":{
-        poster:"assets/posters/movie4.jpg",
-        title:"Dark Night"
-    },
-
-    "Unknown Planet":{
-        poster:"assets/posters/movie5.jpg",
-        title:"Unknown Planet"
-    },
-
-    "Crazy Weekend":{
-        poster:"assets/posters/movie6.jpg",
-        title:"Crazy Weekend"
-    },
-
-    "Forever":{
-        poster:"assets/posters/movie7.jpg",
-        title:"Forever"
-    },
-
-    "Final Mission":{
-        poster:"assets/posters/movie8.jpg",
-        title:"Final Mission"
-    },
-
-    "The Haunted":{
-        poster:"assets/posters/movie9.jpg",
-        title:"The Haunted"
-    },
-
-    "Jungle Mystery":{
-        poster:"assets/posters/movie10.jpg",
-        title:"Jungle Mystery"
-    },
-
-    "The Unknown":{
-        poster:"assets/posters/movie11.jpg",
-        title:"The Unknown"
-    },
-
-    "Future World":{
-        poster:"assets/posters/movie12.jpg",
-        title:"Future World"
-    }
-
-};
+const movie = movies.find(item => item.id === movieId);
 
 
-/* Change details according to selected movie */
-if(movie && movies[movie]){
+/* MOVIE NOT FOUND */
 
-    document.getElementById("movieTitle")
-        .textContent = movies[movie].title;
+if(!movie){
 
-    document.getElementById("moviePoster")
-        .src = movies[movie].poster;
+    document.getElementById("detailsSection").innerHTML = `
+        <div class="not-found">
+            <h1>Movie Not Found</h1>
+            <p>The movie you are looking for could not be found.</p>
+            <a href="movies.html" class="btn back">
+                ← Back to Movies
+            </a>
+        </div>
+    `;
+
+}
+
+
+/* SHOW MOVIE */
+
+else{
+
+    document.title = movie.title + " | CINEORA";
+
+    document.getElementById("poster").src = movie.poster;
+
+    document.getElementById("poster").alt = movie.title;
+
+    document.getElementById("title").textContent = movie.title;
+
+    document.getElementById("year").textContent = movie.year;
+
+    document.getElementById("duration").textContent = movie.duration;
+
+    document.getElementById("rating").textContent =
+        "★ " + movie.rating;
+
+    document.getElementById("description").textContent =
+        movie.description;
+
+
+    /* GENRES */
+
+    const genresContainer =
+        document.getElementById("genres");
+
+    movie.genre.forEach(function(genre){
+
+        const tag = document.createElement("span");
+
+        tag.className = "genre";
+
+        tag.textContent = genre;
+
+        genresContainer.appendChild(tag);
+
+    });
+
+
+    /* WATCH BUTTON */
+
+    document.getElementById("watchButton").href =
+        "watch.html?movie=" + encodeURIComponent(movie.id);
 
 }
 
 </script>
 
 </body>
-  </html>
+</html>
