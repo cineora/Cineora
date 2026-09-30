@@ -1,362 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CINEORA | Watch</title>
+  <title>CINEORA - Watch</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-    background:#050505;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-/* NAVBAR */
-
-.navbar{
-    height:70px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    background:#050505;
-    border-bottom:1px solid #222;
-}
-
-.logo{
-    color:#e50914;
-    font-size:28px;
-    font-weight:900;
-    letter-spacing:2px;
-}
-
-.back{
-    color:#ddd;
-    text-decoration:none;
-    font-size:14px;
-}
-
-.back:hover{
-    color:#fff;
-}
-
-/* PLAYER */
-
-.watch-container{
-    width:100%;
-    max-width:1200px;
-    margin:auto;
-    padding:35px 5%;
-}
-
-.player{
-    width:100%;
-    background:#000;
-    border-radius:10px;
-    overflow:hidden;
-    box-shadow:0 15px 50px rgba(0,0,0,.8);
-}
-
-video{
-    width:100%;
-    display:block;
-    background:#000;
-    max-height:680px;
-}
-
-/* INFO */
-
-.movie-info{
-    padding:28px 0;
-}
-
-.movie-info h1{
-    font-size:38px;
-    margin-bottom:12px;
-}
-
-.meta{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    color:#aaa;
-    margin-bottom:18px;
-}
-
-.rating{
-    color:#ffd700;
-    font-weight:bold;
-}
-
-.genres{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:20px;
-}
-
-.genre{
-    background:#222;
-    border:1px solid #333;
-    padding:6px 12px;
-    border-radius:20px;
-    color:#ddd;
-    font-size:12px;
-}
-
-.description{
-    color:#aaa;
-    line-height:1.7;
-    font-size:15px;
-}
-
-/* COMING SOON */
-
-.coming-soon{
-    min-height:500px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background:#111;
-    border-radius:10px;
-}
-
-.coming-soon h2{
-    font-size:32px;
-    margin-bottom:12px;
-}
-
-.coming-soon p{
-    color:#999;
-    max-width:500px;
-    line-height:1.6;
-}
-
-/* MOBILE */
-
-@media(max-width:700px){
-
-    .navbar{
-        padding:0 5%;
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .logo{
-        font-size:22px;
+    body {
+      background: #080808;
+      color: white;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
     }
 
-    .watch-container{
-        padding:25px 4%;
+    nav {
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      background: rgba(0, 0, 0, 0.95);
+      border-bottom: 1px solid #222;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    .movie-info h1{
-        font-size:28px;
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #e50914;
+      letter-spacing: 1px;
     }
 
-    .coming-soon{
-        min-height:350px;
+    .nav-links {
+      display: flex;
+      gap: 22px;
     }
 
-    .coming-soon h2{
-        font-size:26px;
+    .nav-links a {
+      color: #ddd;
+      text-decoration: none;
+      font-size: 14px;
     }
-}
-</style>
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 30px auto 60px;
+    }
+
+    .back {
+      display: inline-block;
+      color: #ddd;
+      text-decoration: none;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+
+    .back:hover {
+      color: white;
+    }
+
+    .video-box {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .video-box iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .movie-info {
+      padding: 25px 0;
+    }
+
+    .movie-title {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .meta {
+      color: #bbb;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+
+    .rating {
+      color: #ffd700;
+    }
+
+    .genres {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .genre {
+      background: #222;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #ddd;
+    }
+
+    .description {
+      color: #bbb;
+      line-height: 1.7;
+      max-width: 800px;
+    }
+
+    .coming-soon {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 10px;
+      color: #aaa;
+      font-size: 20px;
+    }
+
+    .error {
+      text-align: center;
+      padding: 80px 20px;
+      color: #aaa;
+    }
+
+    @media (max-width: 700px) {
+      .nav-links {
+        display: none;
+      }
+
+      .movie-title {
+        font-size: 26px;
+      }
+
+      .container {
+        width: 94%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
+  <nav>
     <div class="logo">CINEORA</div>
 
-    <a href="movies.html" class="back">
-        ← Back to Movies
-    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="movies.html">Movies</a>
+      <a href="movies.html">Categories</a>
+    </div>
+  </nav>
 
-</nav>
+  <main class="container">
 
+    <a href="movies.html" class="back">← Back to Movies</a>
 
-<!-- WATCH AREA -->
+    <div id="content"></div>
 
-<main class="watch-container">
+  </main>
 
-    <div id="playerArea" class="player"></div>
+  <script src="./movies-data.js"></script>
 
-    <section class="movie-info">
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const movieId = params.get("movie");
 
-        <h1 id="title">Loading...</h1>
+    const movie = movies.find(item => item.id === movieId);
 
-        <div class="meta">
+    const content = document.getElementById("content");
 
-            <span id="year"></span>
+    if (!movie) {
 
-            <span>•</span>
-
-            <span id="duration"></span>
-
-            <span>•</span>
-
-            <span id="rating" class="rating"></span>
-
+      content.innerHTML = `
+        <div class="error">
+          <h2>Movie Not Found</h2>
+          <p>The movie you are looking for could not be found.</p>
         </div>
+      `;
 
-        <div id="genres" class="genres"></div>
+    } else {
 
-        <p id="description" class="description"></p>
+      let videoHTML = "";
 
-    </section>
+      /*
+        YouTube URL থেকে Video ID বের করা
+      */
+      if (movie.video && movie.video.includes("youtube")) {
 
-</main>
+        const videoId = movie.video.match(
+          /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&?/]+)/
+        );
 
+        if (videoId) {
 
-<!-- MOVIE DATABASE -->
-
-<script src="./movies-data.js"></script>
-
-<script>
-
-const params = new URLSearchParams(
-    window.location.search
-);
-
-const movieId = params.get("movie");
-
-
-/* Find selected movie */
-
-const movie = movies.find(function(item){
-
-    return item.id === movieId;
-
-});
-
-
-/* Movie not found */
-
-if(!movie){
-
-    document.getElementById("playerArea").innerHTML = `
-        <div class="coming-soon">
-            <h2>Movie Not Found</h2>
-            <p>
-                The movie you selected could not be found.
-            </p>
-        </div>
-    `;
-
-}
-
-
-/* Movie found */
-
-else{
-
-    document.title =
-        movie.title + " | CINEORA";
-
-
-    /* Movie information */
-
-    document.getElementById("title").textContent =
-        movie.title;
-
-    document.getElementById("year").textContent =
-        movie.year;
-
-    document.getElementById("duration").textContent =
-        movie.duration;
-
-    document.getElementById("rating").textContent =
-        "★ " + movie.rating;
-
-    document.getElementById("description").textContent =
-        movie.description;
-
-
-    /* Genres */
-
-    const genresBox =
-        document.getElementById("genres");
-
-    movie.genre.forEach(function(genre){
-
-        const span =
-            document.createElement("span");
-
-        span.className = "genre";
-
-        span.textContent = genre;
-
-        genresBox.appendChild(span);
-
-    });
-
-
-    /* Video */
-
-    const playerArea =
-        document.getElementById("playerArea");
-
-
-    if(movie.video){
-
-        playerArea.innerHTML = `
-
-            <video
-                controls
-                playsinline
-                poster="${movie.poster}"
-                preload="metadata"
-            >
-
-                <source
-                    src="${movie.video}"
-                    type="video/mp4"
-                >
-
-                Your browser does not support
-                HTML5 video.
-
-            </video>
-
-        `;
-
-    }
-
-    else{
-
-        playerArea.innerHTML = `
-
-            <div class="coming-soon">
-
-                <h2>🎬 Coming Soon</h2>
-
-                <p>
-                    The video for this movie
-                    has not been added yet.
-                </p>
-
+          videoHTML = `
+            <div class="video-box">
+              <iframe
+                src="https://www.youtube.com/embed/${videoId[1]}"
+                title="${movie.title}"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+              </iframe>
             </div>
+          `;
 
+        }
+
+      }
+
+      /*
+        পুরোনো MP4 ভিডিও থাকলে
+      */
+      else if (movie.video) {
+
+        videoHTML = `
+          <div class="video-box">
+            <video
+              controls
+              width="100%"
+              height="100%"
+              poster="${movie.poster}">
+              <source src="${movie.video}" type="video/mp4">
+              Your browser does not support video playback.
+            </video>
+          </div>
         `;
 
+      }
+
+      /*
+        Video না থাকলে
+      */
+      if (!videoHTML) {
+
+        videoHTML = `
+          <div class="video-box">
+            <div class="coming-soon">
+              <div>🎬</div>
+              <div>Coming Soon</div>
+            </div>
+          </div>
+        `;
+
+      }
+
+      content.innerHTML = `
+
+        ${videoHTML}
+
+        <section class="movie-info">
+
+          <h1 class="movie-title">${movie.title}</h1>
+
+          <div class="meta">
+            ${movie.year}
+            &nbsp; • &nbsp;
+            ${movie.duration}
+            &nbsp; • &nbsp;
+            <span class="rating">★ ${movie.rating}</span>
+          </div>
+
+          <div class="genres">
+            ${movie.genre.map(g => `
+              <span class="genre">${g}</span>
+            `).join("")}
+          </div>
+
+          <p class="description">
+            ${movie.description}
+          </p>
+
+        </section>
+      `;
     }
-
-}
-
-</script>
+  </script>
 
 </body>
 </html>
