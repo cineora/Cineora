@@ -8,7 +8,7 @@ const movies = [
     genre: ["Action", "Adventure", "Thriller"],
     poster: "assets/posters/movie1.jpg",
     description: "An action-packed mission begins with danger, mystery and unexpected challenges.",
-    video: "https://www.youtube.com/watch?v=zj4rdFxyYJE"
+    video: "https://www.youtube.com/watch?v=gDScgVvbdT4"
   },
 
   {
