@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Watch — CINEORA</title>
+<title>CINEORA | Watch</title>
 
 <style>
 *{
@@ -19,11 +19,14 @@ body{
     font-family:Arial,Helvetica,sans-serif;
 }
 
+/* NAVBAR */
+
 .navbar{
     height:70px;
     display:flex;
     align-items:center;
-    padding:0 5%;
+    justify-content:space-between;
+    padding:0 6%;
     background:#050505;
     border-bottom:1px solid #222;
 }
@@ -33,97 +36,138 @@ body{
     font-size:28px;
     font-weight:900;
     letter-spacing:2px;
-    text-decoration:none;
-}
-
-.container{
-    width:90%;
-    max-width:1200px;
-    margin:35px auto 60px;
 }
 
 .back{
-    display:inline-block;
-    color:#bbb;
+    color:#ddd;
     text-decoration:none;
-    margin-bottom:20px;
+    font-size:14px;
 }
 
 .back:hover{
     color:#fff;
 }
 
-/* VIDEO PLAYER */
+/* PLAYER */
+
+.watch-container{
+    width:100%;
+    max-width:1200px;
+    margin:auto;
+    padding:35px 5%;
+}
+
 .player{
     width:100%;
     background:#000;
-    border-radius:8px;
+    border-radius:10px;
     overflow:hidden;
-    box-shadow:0 15px 50px rgba(0,0,0,.7);
+    box-shadow:0 15px 50px rgba(0,0,0,.8);
 }
 
 video{
     width:100%;
-    max-height:680px;
     display:block;
     background:#000;
+    max-height:680px;
 }
 
-/* TITLE */
-.title{
-    margin-top:25px;
+/* INFO */
+
+.movie-info{
+    padding:28px 0;
 }
 
-.title h1{
-    font-size:32px;
-    margin-bottom:10px;
+.movie-info h1{
+    font-size:38px;
+    margin-bottom:12px;
 }
 
 .meta{
-    color:#999;
-    font-size:14px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    color:#aaa;
+    margin-bottom:18px;
 }
 
-/* NOTICE */
-.notice{
-    margin-top:25px;
-    padding:18px;
-    background:#151515;
-    border-left:4px solid #e50914;
-    border-radius:5px;
-    color:#bbb;
+.rating{
+    color:#ffd700;
+    font-weight:bold;
+}
+
+.genres{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.genre{
+    background:#222;
+    border:1px solid #333;
+    padding:6px 12px;
+    border-radius:20px;
+    color:#ddd;
+    font-size:12px;
+}
+
+.description{
+    color:#aaa;
+    line-height:1.7;
+    font-size:15px;
+}
+
+/* COMING SOON */
+
+.coming-soon{
+    min-height:500px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#111;
+    border-radius:10px;
+}
+
+.coming-soon h2{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.coming-soon p{
+    color:#999;
+    max-width:500px;
     line-height:1.6;
 }
 
-footer{
-    text-align:center;
-    padding:30px;
-    border-top:1px solid #222;
-    color:#666;
-}
-
 /* MOBILE */
+
 @media(max-width:700px){
 
     .navbar{
-        height:60px;
+        padding:0 5%;
     }
 
     .logo{
-        font-size:23px;
+        font-size:22px;
     }
 
-    .container{
-        width:94%;
-        margin-top:25px;
+    .watch-container{
+        padding:25px 4%;
     }
 
-    .title h1{
-        font-size:24px;
+    .movie-info h1{
+        font-size:28px;
     }
 
-    video{
-        max-height:300px;
+    .coming-soon{
+        min-height:350px;
+    }
+
+    .coming-soon h2{
+        font-size:26px;
     }
 }
 </style>
@@ -131,65 +175,188 @@ footer{
 
 <body>
 
-<header class="navbar">
-    <a href="index.html" class="logo">CINEORA</a>
-</header>
+<!-- NAVBAR -->
 
+<nav class="navbar">
 
-<main class="container">
+    <div class="logo">CINEORA</div>
 
     <a href="movies.html" class="back">
         ← Back to Movies
     </a>
 
-
-    <div class="player">
-
-        <!--
-        Replace the video source below with a video
-        file that you own or are licensed to stream.
-        -->
-
-        <video controls playsinline poster="assets/posters/movie1.jpg">
-
-            <source src="assets/videos/movie1.mp4"
-                    type="video/mp4">
-
-            Your browser does not support video playback.
-
-        </video>
-
-    </div>
+</nav>
 
 
-    <div class="title">
+<!-- WATCH AREA -->
 
-        <h1 id="movieTitle">
-            The Last Adventure
-        </h1>
+<main class="watch-container">
+
+    <div id="playerArea" class="player"></div>
+
+    <section class="movie-info">
+
+        <h1 id="title">Loading...</h1>
 
         <div class="meta">
-            ⭐ 8.8 &nbsp; • &nbsp;
-            2026 &nbsp; • &nbsp;
-            Action & Adventure &nbsp; • &nbsp;
-            HD
+
+            <span id="year"></span>
+
+            <span>•</span>
+
+            <span id="duration"></span>
+
+            <span>•</span>
+
+            <span id="rating" class="rating"></span>
+
         </div>
 
-    </div>
+        <div id="genres" class="genres"></div>
 
+        <p id="description" class="description"></p>
 
-    <div class="notice">
-        CINEORA video player. Only videos that you own,
-        created yourself, are public-domain, or have permission
-        to distribute should be uploaded or streamed here.
-    </div>
+    </section>
 
 </main>
 
 
-<footer>
-    © 2026 CINEORA — Movies & Entertainment
-</footer>
+<!-- MOVIE DATABASE -->
+
+<script src="./movies-data.js"></script>
+
+<script>
+
+const params = new URLSearchParams(
+    window.location.search
+);
+
+const movieId = params.get("movie");
+
+
+/* Find selected movie */
+
+const movie = movies.find(function(item){
+
+    return item.id === movieId;
+
+});
+
+
+/* Movie not found */
+
+if(!movie){
+
+    document.getElementById("playerArea").innerHTML = `
+        <div class="coming-soon">
+            <h2>Movie Not Found</h2>
+            <p>
+                The movie you selected could not be found.
+            </p>
+        </div>
+    `;
+
+}
+
+
+/* Movie found */
+
+else{
+
+    document.title =
+        movie.title + " | CINEORA";
+
+
+    /* Movie information */
+
+    document.getElementById("title").textContent =
+        movie.title;
+
+    document.getElementById("year").textContent =
+        movie.year;
+
+    document.getElementById("duration").textContent =
+        movie.duration;
+
+    document.getElementById("rating").textContent =
+        "★ " + movie.rating;
+
+    document.getElementById("description").textContent =
+        movie.description;
+
+
+    /* Genres */
+
+    const genresBox =
+        document.getElementById("genres");
+
+    movie.genre.forEach(function(genre){
+
+        const span =
+            document.createElement("span");
+
+        span.className = "genre";
+
+        span.textContent = genre;
+
+        genresBox.appendChild(span);
+
+    });
+
+
+    /* Video */
+
+    const playerArea =
+        document.getElementById("playerArea");
+
+
+    if(movie.video){
+
+        playerArea.innerHTML = `
+
+            <video
+                controls
+                playsinline
+                poster="${movie.poster}"
+                preload="metadata"
+            >
+
+                <source
+                    src="${movie.video}"
+                    type="video/mp4"
+                >
+
+                Your browser does not support
+                HTML5 video.
+
+            </video>
+
+        `;
+
+    }
+
+    else{
+
+        playerArea.innerHTML = `
+
+            <div class="coming-soon">
+
+                <h2>🎬 Coming Soon</h2>
+
+                <p>
+                    The video for this movie
+                    has not been added yet.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+</script>
 
 </body>
 </html>
