@@ -1,515 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CINEORA — Movies, Series & Entertainment</title>
-  <meta name="description" content="CINEORA — Discover movies, series and entertainment.">
-  <meta name="theme-color" content="#080808">
+<title>CINEORA — Movies & Entertainment</title>
+<meta name="description" content="CINEORA — Movies, Series and Entertainment">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body{
+    background:#080808;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080808;
-      color: #fff;
-      overflow-x: hidden;
-    }
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 5%;
+    z-index:1000;
+    background:linear-gradient(to bottom,rgba(0,0,0,.95),rgba(0,0,0,.15));
+}
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+.logo{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#e50914;
+}
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 5%;
-      background: rgba(8, 8, 8, 0.82);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      z-index: 1000;
-    }
+.nav-links{
+    display:flex;
+    gap:25px;
+    list-style:none;
+}
 
-    .logo {
-      font-size: 27px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #e50914;
-    }
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:600;
+    transition:.3s;
+}
 
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
+.nav-links a:hover{
+    color:#e50914;
+}
 
-    .nav-links a {
-      font-size: 14px;
-      color: #ddd;
-      transition: 0.3s;
-    }
+.search{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
 
-    .nav-links a:hover {
-      color: #fff;
-    }
+.search input{
+    width:170px;
+    padding:9px 12px;
+    border:1px solid #555;
+    border-radius:5px;
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    outline:none;
+}
 
-    .search-btn {
-      border: 1px solid #333;
-      background: #151515;
-      color: #fff;
-      padding: 10px 16px;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.search button{
+    border:none;
+    background:#e50914;
+    color:#fff;
+    padding:9px 13px;
+    border-radius:5px;
+    cursor:pointer;
+}
 
-    /* HERO */
-    .hero {
-      min-height: 720px;
-      padding: 180px 7% 100px;
-      display: flex;
-      align-items: center;
-      position: relative;
-      background:
-        linear-gradient(90deg, #080808 5%, rgba(8,8,8,.82) 38%, rgba(8,8,8,.25) 75%, #080808 100%),
-        linear-gradient(0deg, #080808 0%, transparent 30%),
+/* HERO */
+.hero{
+    height:90vh;
+    min-height:550px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:0 6%;
+    background:
+        linear-gradient(to right,#080808 5%,rgba(8,8,8,.82) 35%,rgba(8,8,8,.2) 75%),
+        linear-gradient(to top,#080808 2%,transparent 35%),
         url("assets/hero.jpg") center/cover no-repeat;
+}
+
+.hero-content{
+    max-width:600px;
+    margin-top:70px;
+}
+
+.hero h1{
+    font-size:58px;
+    line-height:1;
+    margin-bottom:20px;
+    font-weight:900;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.6;
+    color:#ddd;
+    margin-bottom:25px;
+}
+
+.meta{
+    margin-bottom:20px;
+    color:#ddd;
+    font-size:14px;
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+}
+
+.btn{
+    padding:13px 23px;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-block;
+}
+
+.play{
+    background:#fff;
+    color:#000;
+}
+
+.info{
+    background:rgba(90,90,90,.8);
+    color:#fff;
+}
+
+/* CONTENT */
+.content{
+    padding:20px 5% 60px;
+    margin-top:-70px;
+    position:relative;
+    z-index:5;
+}
+
+.section{
+    margin-bottom:40px;
+}
+
+.section-title{
+    font-size:24px;
+    margin-bottom:17px;
+}
+
+/* MOVIE ROW */
+.movie-row{
+    display:flex;
+    gap:12px;
+    overflow-x:auto;
+    padding:5px 0 15px;
+    scrollbar-width:none;
+}
+
+.movie-row::-webkit-scrollbar{
+    display:none;
+}
+
+.movie-card{
+    flex:0 0 180px;
+    height:265px;
+    border-radius:6px;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    background:#171717;
+    transition:.35s;
+}
+
+.movie-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.movie-card:hover{
+    transform:scale(1.08);
+    z-index:10;
+}
+
+.movie-info{
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    padding:35px 10px 10px;
+    background:linear-gradient(transparent,rgba(0,0,0,.95));
+}
+
+.movie-info h3{
+    font-size:15px;
+}
+
+.movie-info span{
+    font-size:12px;
+    color:#ccc;
+}
+
+/* CATEGORY */
+.categories{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.category{
+    background:#1d1d1d;
+    border:1px solid #333;
+    padding:10px 18px;
+    border-radius:20px;
+    color:#ddd;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.category:hover{
+    background:#e50914;
+    color:#fff;
+    border-color:#e50914;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:35px 20px;
+    border-top:1px solid #222;
+    color:#888;
+    font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:800px){
+
+    .navbar{
+        height:auto;
+        min-height:65px;
+        padding:12px 4%;
+        flex-wrap:wrap;
+        gap:10px;
     }
 
-    .hero-content {
-      max-width: 620px;
+    .logo{
+        font-size:23px;
     }
 
-    .small-title {
-      color: #e50914;
-      font-size: 14px;
-      font-weight: bold;
-      letter-spacing: 3px;
-      margin-bottom: 18px;
+    .nav-links{
+        order:3;
+        width:100%;
+        justify-content:center;
+        gap:17px;
+        overflow-x:auto;
+        padding-bottom:3px;
     }
 
-    .hero h1 {
-      font-size: clamp(45px, 7vw, 82px);
-      line-height: 0.95;
-      margin-bottom: 22px;
-      letter-spacing: -2px;
+    .nav-links a{
+        font-size:13px;
+        white-space:nowrap;
     }
 
-    .hero p {
-      color: #d0d0d0;
-      line-height: 1.7;
-      font-size: 16px;
-      max-width: 570px;
-      margin-bottom: 30px;
+    .search{
+        margin-left:auto;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .search input{
+        width:110px;
     }
 
-    .btn {
-      padding: 13px 23px;
-      border-radius: 6px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+    .hero{
+        height:72vh;
+        min-height:520px;
+        padding:0 5%;
+        background-position:center;
     }
 
-    .btn-primary {
-      background: #fff;
-      color: #000;
+    .hero-content{
+        margin-top:100px;
     }
 
-    .btn-secondary {
-      background: rgba(80,80,80,.8);
-      color: #fff;
+    .hero h1{
+        font-size:39px;
     }
 
-    /* MAIN */
-    main {
-      padding: 0 5% 70px;
+    .hero p{
+        font-size:14px;
+        line-height:1.5;
     }
 
-    .section {
-      margin-top: 50px;
+    .content{
+        padding-left:4%;
+        padding-right:4%;
+        margin-top:-30px;
     }
 
-    .section-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-      font-weight: 800;
+    .section-title{
+        font-size:20px;
     }
 
-    .section-title span {
-      color: #e50914;
+    .movie-card{
+        flex-basis:135px;
+        height:200px;
     }
 
-    /* CARDS */
-    .movie-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 16px;
+    .movie-info h3{
+        font-size:12px;
     }
 
-    .movie-card {
-      background: #111;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-      transition: transform .25s, box-shadow .25s;
+    .buttons{
+        gap:8px;
     }
 
-    .movie-card:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 15px 35px rgba(0,0,0,.5);
+    .btn{
+        padding:10px 15px;
+        font-size:14px;
     }
+}
 
-    .poster {
-      width: 100%;
-      aspect-ratio: 2 / 3;
-      object-fit: cover;
-      display: block;
-      background: #171717;
+@media(min-width:1200px){
+    .movie-card{
+        flex-basis:200px;
+        height:290px;
     }
-
-    .movie-info {
-      padding: 12px;
-    }
-
-    .movie-info h3 {
-      font-size: 15px;
-      margin-bottom: 7px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .movie-meta {
-      color: #999;
-      font-size: 12px;
-    }
-
-    .badge {
-      position: absolute;
-      top: 9px;
-      left: 9px;
-      background: #e50914;
-      padding: 5px 8px;
-      border-radius: 4px;
-      font-size: 10px;
-      font-weight: bold;
-    }
-
-    /* CATEGORIES */
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 12px;
-    }
-
-    .category {
-      background: #151515;
-      border: 1px solid #242424;
-      padding: 18px 10px;
-      text-align: center;
-      border-radius: 8px;
-      color: #ddd;
-      font-size: 13px;
-      transition: .25s;
-    }
-
-    .category:hover {
-      background: #222;
-      transform: translateY(-3px);
-    }
-
-    /* FOOTER */
-    footer {
-      border-top: 1px solid #222;
-      padding: 40px 5%;
-      color: #777;
-      text-align: center;
-      margin-top: 30px;
-    }
-
-    footer strong {
-      color: #e50914;
-    }
-
-    /* MOBILE */
-    @media (max-width: 1100px) {
-      .movie-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-
-      .categories {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-
-    @media (max-width: 700px) {
-      .navbar {
-        height: 62px;
-        padding: 0 18px;
-      }
-
-      .logo {
-        font-size: 22px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero {
-        min-height: 650px;
-        padding: 150px 20px 70px;
-        background:
-          linear-gradient(0deg, #080808 5%, rgba(8,8,8,.45) 65%, rgba(8,8,8,.25)),
-          url("assets/hero.jpg") center/cover no-repeat;
-      }
-
-      .hero h1 {
-        font-size: 48px;
-      }
-
-      .hero p {
-        font-size: 14px;
-      }
-
-      main {
-        padding: 0 18px 50px;
-      }
-
-      .movie-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      .categories {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .section-title {
-        font-size: 21px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <!-- NAVBAR -->
-  <header class="navbar">
-    <a href="index.html" class="logo">CINEORA</a>
+<!-- NAVBAR -->
+<header class="navbar">
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="movies.html">Movies</a>
-      <a href="series.html">Series</a>
-      <a href="#categories">Categories</a>
-    </nav>
+    <div class="logo">CINEORA</div>
 
-    <button class="search-btn" onclick="goSearch()">🔍 Search</button>
-  </header>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="movies.html">Movies</a></li>
+        <li><a href="#">Series</a></li>
+        <li><a href="#categories">Categories</a></li>
+    </ul>
+
+    <div class="search">
+        <input type="text" id="searchInput" placeholder="Search">
+        <button onclick="searchMovie()">🔍</button>
+    </div>
+
+</header>
 
 
-  <!-- HERO -->
-  <section class="hero">
+<!-- HERO -->
+<section class="hero">
+
     <div class="hero-content">
 
-      <div class="small-title">CINEORA ORIGINAL</div>
+        <div class="meta">
+            ⭐ 8.8 &nbsp; • &nbsp; 2026 &nbsp; • &nbsp; Action
+        </div>
 
-      <h1>YOUR WORLD<br>OF STORIES</h1>
+        <h1>THE LAST<br>ADVENTURE</h1>
 
-      <p>
-        Discover movies, series and unforgettable stories in one cinematic
-        entertainment destination.
-      </p>
+        <p>
+            Enter a world of mystery, danger and adventure.
+            Discover amazing movies and entertainment on CINEORA.
+        </p>
 
-      <div class="hero-buttons">
-        <a href="movies.html" class="btn btn-primary">▶ Explore Movies</a>
-        <a href="movies.html" class="btn btn-secondary">ℹ More Info</a>
-      </div>
+        <div class="buttons">
+            <a href="watch.html" class="btn play">▶ Play Now</a>
+            <a href="details.html" class="btn info">ⓘ More Info</a>
+        </div>
 
     </div>
-  </section>
+
+</section>
 
 
-  <main>
+<main class="content">
 
     <!-- TRENDING -->
     <section class="section">
-      <h2 class="section-title">🔥 <span>Trending</span> Now</h2>
 
-      <div class="movie-grid">
+        <h2 class="section-title">Trending Now</h2>
 
-        <a class="movie-card" href="details.html">
-          <span class="badge">TRENDING</span>
-          <img class="poster" src="assets/posters/movie1.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Featured Movie</h3>
-            <div class="movie-meta">2026 • Action</div>
-          </div>
-        </a>
+        <div class="movie-row">
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie2.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Night Hunter</h3>
-            <div class="movie-meta">2026 • Thriller</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie1.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie One</h3>
+                    <span>Action • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie3.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Dark World</h3>
-            <div class="movie-meta">2026 • Horror</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie2.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie Two</h3>
+                    <span>Adventure • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie4.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Lost Kingdom</h3>
-            <div class="movie-meta">2026 • Adventure</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie3.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie Three</h3>
+                    <span>Thriller • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie5.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Final Mission</h3>
-            <div class="movie-meta">2026 • Action</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie4.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie Four</h3>
+                    <span>Horror • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie6.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Beyond Space</h3>
-            <div class="movie-meta">2026 • Sci-Fi</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie5.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie Five</h3>
+                    <span>Sci-Fi • 2026</span>
+                </div>
+            </div>
 
-      </div>
+            <div class="movie-card">
+                <img src="assets/posters/movie6.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Movie Six</h3>
+                    <span>Drama • 2026</span>
+                </div>
+            </div>
+
+        </div>
     </section>
 
 
     <!-- NEW RELEASES -->
     <section class="section">
-      <h2 class="section-title">✨ New <span>Releases</span></h2>
 
-      <div class="movie-grid">
+        <h2 class="section-title">New Releases</h2>
 
-        <a class="movie-card" href="details.html">
-          <span class="badge">NEW</span>
-          <img class="poster" src="assets/posters/movie7.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>New Horizon</h3>
-            <div class="movie-meta">2026 • Drama</div>
-          </div>
-        </a>
+        <div class="movie-row">
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie8.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Red Storm</h3>
-            <div class="movie-meta">2026 • Action</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie7.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>New Movie</h3>
+                    <span>2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie9.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Shadow House</h3>
-            <div class="movie-meta">2026 • Horror</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie8.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>New Adventure</h3>
+                    <span>2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie10.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Ocean Quest</h3>
-            <div class="movie-meta">2026 • Adventure</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie9.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Dark Night</h3>
+                    <span>Horror • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie11.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Last Signal</h3>
-            <div class="movie-meta">2026 • Mystery</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie10.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Final Mission</h3>
+                    <span>Action • 2026</span>
+                </div>
+            </div>
 
-        <a class="movie-card" href="details.html">
-          <img class="poster" src="assets/posters/movie12.jpg" alt="Movie">
-          <div class="movie-info">
-            <h3>Hidden Truth</h3>
-            <div class="movie-meta">2026 • Thriller</div>
-          </div>
-        </a>
+            <div class="movie-card">
+                <img src="assets/posters/movie11.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Lost World</h3>
+                    <span>Adventure • 2026</span>
+                </div>
+            </div>
 
-      </div>
+            <div class="movie-card">
+                <img src="assets/posters/movie12.jpg" alt="Movie">
+                <div class="movie-info">
+                    <h3>Unknown</h3>
+                    <span>Mystery • 2026</span>
+                </div>
+            </div>
+
+        </div>
     </section>
 
 
     <!-- CATEGORIES -->
     <section class="section" id="categories">
-      <h2 class="section-title">🎬 Browse by <span>Category</span></h2>
 
-      <div class="categories">
-        <a href="movies.html" class="category">Action</a>
-        <a href="movies.html" class="category">Horror</a>
-        <a href="movies.html" class="category">Comedy</a>
-        <a href="movies.html" class="category">Romance</a>
-        <a href="movies.html" class="category">Sci-Fi</a>
-        <a href="movies.html" class="category">Adventure</a>
-        <a href="movies.html" class="category">Thriller</a>
-        <a href="movies.html" class="category">Drama</a>
-      </div>
+        <h2 class="section-title">Browse by Category</h2>
+
+        <div class="categories">
+            <a href="movies.html" class="category">Action</a>
+            <a href="movies.html" class="category">Horror</a>
+            <a href="movies.html" class="category">Comedy</a>
+            <a href="movies.html" class="category">Romance</a>
+            <a href="movies.html" class="category">Sci-Fi</a>
+            <a href="movies.html" class="category">Adventure</a>
+            <a href="movies.html" class="category">Thriller</a>
+            <a href="movies.html" class="category">Drama</a>
+        </div>
+
     </section>
 
-  </main>
+</main>
 
 
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 <strong>CINEORA</strong>. All rights reserved.</p>
-    <p style="margin-top:8px;">Movies • Series • Entertainment</p>
-  </footer>
+<footer>
+    © 2026 CINEORA — Movies & Entertainment
+</footer>
 
 
-  <script>
-    function goSearch() {
-      window.location.href = "movies.html";
+<script>
+
+function searchMovie(){
+
+    const query =
+        document.getElementById("searchInput").value.trim();
+
+    if(query){
+        window.location.href =
+            "movies.html?search=" +
+            encodeURIComponent(query);
     }
-  </script>
+
+}
+
+document.getElementById("searchInput")
+.addEventListener("keypress", function(e){
+
+    if(e.key === "Enter"){
+        searchMovie();
+    }
+
+});
+
+</script>
 
 </body>
-  </html>
+</html>
